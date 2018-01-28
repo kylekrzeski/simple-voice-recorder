@@ -1,17 +1,43 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Record / Listen</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <!-- welcome text -->
+  <ion-card>
+    <ion-card-header>
+      <h2>Welcome to my simple voice recorder app!</h2>
+    </ion-card-header>
+    <ion-card-content>
+      It's way better than all of those apps that have a ton of ads that's for sure!
+    </ion-card-content>
+  </ion-card>
+
+  <!-- start/stop recording -->
+  <ion-card>
+    <ion-card-content style="text-align:center;">
+      <button *ngIf="!recording" ion-button (click)="startRecording()">
+        <ion-icon name="mic"></ion-icon>
+         &nbsp;&nbsp;Start Recording
+      </button>
+      <button *ngIf="recording" ion-button (click)="stopRecording()">
+        <ion-icon name="mic-off"></ion-icon>
+         &nbsp;&nbsp;Stop Recording
+      </button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- audio file list -->
+  <ion-list>
+    <ion-item *ngFor="let file of audioList">
+      {{file.filename}}
+      <button ion-button clear item-end large (click)="play(audio.filename, index)">
+        <ion-icon ios="ios-play" md="md-play" name="play"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+
+
 </ion-content>
